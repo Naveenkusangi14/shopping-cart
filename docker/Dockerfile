@@ -11,7 +11,7 @@
 # ENTRYPOINT exec java -jar app.jar
 
 # Stage 1: Build the application
-FROM java AS build
+FROM openjdk:latest AS build
 
 ENV APP_HOME /usr/app
 WORKDIR $APP_HOME
@@ -23,4 +23,5 @@ FROM gcr.io/distroless/java
 
 COPY --from=build /usr/app/app.jar /app.jar
 
-CMD ["app.jar" , "java -jar"]
+CMD ["java", "-jar", "/app.jar"]
+
